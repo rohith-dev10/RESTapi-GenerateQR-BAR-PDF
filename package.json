@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "build": "apt-get update && apt-get install -y chromium-browser && nodemon server.js"
   },
   "keywords": [],
   "author": "",
