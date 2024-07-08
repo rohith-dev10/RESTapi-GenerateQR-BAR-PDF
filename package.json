@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon server.js",
-    "build": "npm install && node preinstall.js"
+    "build": "npm install && node node_modules/puppeteer/install.js"
   },
   "keywords": [],
   "author": "",
