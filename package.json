@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon server.js",
-    "build": "npm install && node node_modules/puppeteer/install.mjs && npx puppeteer browsers install chrome"
+    "buildup": "npm install && node node_modules/puppeteer/install.mjs && npx puppeteer browsers install chrome",
+    "build": "./render-build.sh"
   },
   "keywords": [],
   "author": "",
