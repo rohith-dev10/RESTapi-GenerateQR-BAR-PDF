@@ -1,0 +1,20 @@
+{
+  "name": "08072024",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bwip-js": "^4.5.0",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "nodemon": "^3.1.4",
+    "puppeteer": "^22.12.1",
+    "qrcode": "^1.5.3"
+  }
+}
