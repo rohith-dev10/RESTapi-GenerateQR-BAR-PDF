@@ -10,6 +10,10 @@ const port = 3000;
 app.use(express.json());
 app.use(cors());
 
+app.get('/', (req, res) => {
+    res.send('Welcome to the PDF Generator API!');
+})
+
 // Endpoint to generate QR code and return base64 image
 app.post('/generateQR', async (req, res) => {
     console.log('Request received:', req.body);
