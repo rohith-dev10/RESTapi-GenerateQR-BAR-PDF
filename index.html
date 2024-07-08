@@ -166,7 +166,7 @@
             const originalText = button.innerHTML;
             button.disabled = true;
             button.innerHTML = 'Loading...<span class="spinner"></span>';
-            const baseURL = "http://localhost:3000";
+            const baseURL = "https://restapi-generateqr-bar-pdf.onrender.com";
             try {
                 const response = await fetch(baseURL+requestURL, requestOptions);
                 button.disabled = false;
