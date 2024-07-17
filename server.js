@@ -3,6 +3,9 @@ const QRCode = require('qrcode');
 const BWIP = require('bwip-js');
 const puppeteer = require('puppeteer');
 const cors = require('cors');
+const ExcelJS = require('exceljs');
+const cheerio = require('cheerio');
+
 
 const app = express();
 const port = 3000;
@@ -78,6 +81,39 @@ app.post('/generatePDF', async (req, res) => {
     } catch (err) {
         console.error('Error generating PDF:', err);
         res.status(500).json({ error: 'Failed to generate PDF' });
+    }
+});
+
+app.post('/generateExcel', async (req, res) => {
+    const { html } = req.body;
+
+    try {
+        const workbook = new ExcelJS.Workbook();
+        const worksheet = workbook.addWorksheet('Sheet 1');
+
+        // Parse the HTML table and add data to worksheet
+        const $ = cheerio.load(html);
+        const table = $('table');
+
+        // Iterate over each row and cell in the HTML table and add to Excel worksheet
+        table.find('tr').each((rowIndex, row) => {
+            const rowData = [];
+            $(row).find('td, th').each((cellIndex, cell) => {
+                rowData.push($(cell).text());
+            });
+            worksheet.addRow(rowData);
+        });
+
+        // Generate Excel buffer
+        const buffer = await workbook.xlsx.writeBuffer();
+
+        // Set headers and send Excel file as response
+        res.setHeader('Content-Disposition', 'attachment; filename=generated.xlsx');
+        res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        res.send(buffer);
+    } catch (err) {
+        console.error('Error generating Excel:', err);
+        res.status(500).json({ error: 'Failed to generate Excel' });
     }
 });
 
